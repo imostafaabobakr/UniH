@@ -2,6 +2,7 @@ package com.jdev.kolya;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -22,7 +23,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.jdev.kolya.utils.NotificationSystem;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -76,8 +79,8 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
 
                 mfire.collection("comm");
-                Intent intent = new Intent(MainActivity.this,Subjects.class);
-                intent.putExtra(CLA,1);
+                Intent intent = new Intent(MainActivity.this, Subjects.class);
+                intent.putExtra(CLA, 1);
                 startActivity(intent);
 
             }
@@ -87,8 +90,8 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
 
                 mfire.collection("Epower");
-                Intent intent = new Intent(MainActivity.this,Subjects.class);
-                intent.putExtra(CLA,2);
+                Intent intent = new Intent(MainActivity.this, Subjects.class);
+                intent.putExtra(CLA, 2);
 
                 startActivity(intent);
             }
@@ -98,8 +101,8 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
 
                 mfire.collection("Mpower");
-                Intent intent = new Intent(MainActivity.this,Subjects.class);
-                intent.putExtra(CLA,3);
+                Intent intent = new Intent(MainActivity.this, Subjects.class);
+                intent.putExtra(CLA, 3);
                 startActivity(intent);
             }
         });
@@ -108,8 +111,8 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
 
                 mfire.collection("entag");
-                Intent intent = new Intent(MainActivity.this,Subjects.class);
-                intent.putExtra(CLA,4);
+                Intent intent = new Intent(MainActivity.this, Subjects.class);
+                intent.putExtra(CLA, 4);
                 startActivity(intent);
             }
         });
@@ -118,8 +121,8 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
 
                 mfire.collection("mdany");
-                Intent intent = new Intent(MainActivity.this,Subjects.class);
-                intent.putExtra(CLA,5);
+                Intent intent = new Intent(MainActivity.this, Subjects.class);
+                intent.putExtra(CLA, 5);
                 startActivity(intent);
             }
         });
@@ -128,8 +131,8 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
 
                 mfire.collection("omara");
-                Intent intent = new Intent(MainActivity.this,Subjects.class);
-                intent.putExtra(CLA,6);
+                Intent intent = new Intent(MainActivity.this, Subjects.class);
+                intent.putExtra(CLA, 6);
                 startActivity(intent);
             }
         });
@@ -138,11 +141,24 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
 
                 mfire.collection("msa7a");
-                Intent intent = new Intent(MainActivity.this,Subjects.class);
-                intent.putExtra(CLA,7);
+                Intent intent = new Intent(MainActivity.this, Subjects.class);
+                intent.putExtra(CLA, 7);
                 startActivity(intent);
             }
         });
+
+        try {
+            //Create folder
+            File folder = new File(Environment.getExternalStorageDirectory() + File.separator + getString(R.string.app_name));
+            if (!folder.exists())
+                folder.mkdir();
+        }
+        catch(Exception e)
+        {
+        }
+
+
+
 
     }
 
@@ -197,13 +213,19 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-            startActivity(new Intent(MainActivity.this,addPost.class));
+            startActivity(new Intent(MainActivity.this, addPost.class));
 
         } else if (id == R.id.nav_slideshow) {
+            startActivity(new Intent(MainActivity.this, PostsView.class));
+
 
         } else if (id == R.id.nav_manage) {
+            startActivity(new Intent(MainActivity.this, Downloaded.class));
+
 
         } else if (id == R.id.nav_share) {
+            startActivity(new Intent(MainActivity.this, Ann_make.class));
+
 
         } else if (id == R.id.nav_send) {
 
